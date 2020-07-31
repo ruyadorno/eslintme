@@ -66,7 +66,7 @@ function testStartedStatus() {
 	console.log('> Status should be running');
 	run(['status'], function (data) {
 		assert.equal(
-			'Running\n',
+			'Running. No instances cached.',
 			data.toString()
 		);
 	}, testRestartEslintd);
