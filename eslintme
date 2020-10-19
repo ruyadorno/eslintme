@@ -26,6 +26,7 @@ function findeslintd() {
 	if hash eslint_d 2>/dev/null; then
 		# use global eslint_d install
 		echo eslint_d
+		# TODO: try to find paths using $(npm bin)/eslint_d first
 	elif [ -e "$currdir/node_modules/eslint_d/bin/eslint_d.js" ]; then
 		# nested install
 		echo "$currdir/node_modules/eslint_d/bin/eslint_d.js"
