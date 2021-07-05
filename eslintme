@@ -23,15 +23,22 @@ function findeslintd() {
 		[[ $source != /* ]] && source="$currdir/$source"
 	done
 	currdir="$( cd -P "$( dirname "$source" )" && pwd )"
+	globalbin="$(npm bin -g)"
+	localbin="$(npm bin)"
 	if hash eslint_d 2>/dev/null; then
 		# use global eslint_d install
 		echo eslint_d
-		# TODO: try to find paths using $(npm bin)/eslint_d first
+	elif [ -e "$globalbin/eslint_d" ]; then
+		# use global-installed npm binary
+		echo "$globalbin/eslint_d"
+	elif [ -e "$localbin/eslint_d" ]; then
+		# use local-installed npm binary
+		echo "$localbin/eslint_d"
 	elif [ -e "$currdir/node_modules/eslint_d/bin/eslint_d.js" ]; then
 		# nested install
 		echo "$currdir/node_modules/eslint_d/bin/eslint_d.js"
 	else
-		# flat npm3 install
+		# maybe check for a legacy nested npm install as a last resource?
 		echo "$currdir/../eslint_d/bin/eslint_d.js"
 	fi
 }
