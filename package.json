@@ -1,6 +1,6 @@
 {
   "name": "eslintme",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "The fastest way to eslint a single file",
   "license": "MIT",
   "repository": "ruyadorno/eslintme",
